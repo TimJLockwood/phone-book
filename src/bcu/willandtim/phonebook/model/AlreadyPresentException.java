@@ -1,4 +1,4 @@
-package bcu.changeme.phonebook.model;
+package bcu.willandtim.phonebook.model;
 
 /*
  * This exception is thrown when trying to add an entry to the phone book,
@@ -6,11 +6,11 @@ package bcu.changeme.phonebook.model;
  */
 public class AlreadyPresentException extends Exception {
 	private final String name;
-	
+
 	public AlreadyPresentException(String name) {
 		this.name = name;
 	}
-	
+
 	public String getName() {
 		return name;
 	}

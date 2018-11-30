@@ -1,8 +1,9 @@
-package bcu.changeme.phonebook.test;
-
-import bcu.changeme.phonebook.model.*;
+package bcu.willandtim.phonebook.test;
 
 import org.junit.Test;
+
+import bcu.willandtim.phonebook.model.*;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -11,14 +12,14 @@ import java.util.Collections;
 
 public class PhoneBookTest {
 	private final PhoneBook phoneBook = new PhoneBook();
-	
+
 	@Test
 	public void testAddEntry() throws Exception {
 		phoneBook.addEntry("Alice", "12345");
 		PhoneBookEntry entry = phoneBook.getEntry("alice");
 		assertEquals("12345", entry.getPhoneNumber());
 	}
-	
+
 	@Test
 	public void testUpdateEntry() throws Exception {
 		phoneBook.addEntry("Alice", "12345");
@@ -26,7 +27,7 @@ public class PhoneBookTest {
 		PhoneBookEntry entry = phoneBook.getEntry("alice");
 		assertEquals("67890", entry.getPhoneNumber());
 	}
-	
+
 	@Test
 	public void testRemoveEntry() throws Exception {
 		phoneBook.addEntry("Alice", "12345");
@@ -34,43 +35,40 @@ public class PhoneBookTest {
 		try {
 			phoneBook.getEntry("alice");
 			fail();
-		} catch(NotPresentException ex) {
+		} catch (NotPresentException ex) {
 			// test passes
 		}
 	}
-	
+
 	@Test
 	public void testGetNamesEmpty() throws Exception {
 		assertEquals(Collections.emptyList(), phoneBook.getAllNames());
 	}
-	
+
 	@Test
 	public void testGetAllNames() throws Exception {
 		phoneBook.addEntry("Alice", "12345");
 		phoneBook.addEntry("Charles", "24680");
 		phoneBook.addEntry("Bob", "67890");
-		assertEquals(
-			Arrays.asList("Alice", "Bob", "Charles"),
-			phoneBook.getAllNames()
-		);
+		assertEquals(Arrays.asList("Alice", "Bob", "Charles"), phoneBook.getAllNames());
 	}
-	
+
 	@Test(expected = AlreadyPresentException.class)
 	public void testAddEntryAlreadyPresent() throws Exception {
 		phoneBook.addEntry("Alice", "12345");
 		phoneBook.addEntry("Alice", "67890");
 	}
-	
+
 	@Test(expected = NotPresentException.class)
 	public void testGetEntryNotPresent() throws Exception {
 		phoneBook.getEntry("Alice");
 	}
-	
+
 	@Test(expected = NotPresentException.class)
 	public void testUpdateEntryNotPresent() throws Exception {
 		phoneBook.updateEntry("Alice", "67890");
 	}
-	
+
 	@Test(expected = NotPresentException.class)
 	public void testRemoveEntryNotPresent() throws Exception {
 		phoneBook.removeEntry("Alice");

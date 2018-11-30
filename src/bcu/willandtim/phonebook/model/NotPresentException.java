@@ -1,4 +1,4 @@
-package bcu.changeme.phonebook.model;
+package bcu.willandtim.phonebook.model;
 
 /*
  * This exception is thrown when trying to get, update or remove an entry from
@@ -6,11 +6,11 @@ package bcu.changeme.phonebook.model;
  */
 public class NotPresentException extends Exception {
 	private final String name;
-	
+
 	public NotPresentException(String name) {
 		this.name = name;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
